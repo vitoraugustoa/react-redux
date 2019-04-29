@@ -1,0 +1,14 @@
+C:\Users\vitor.lopes\OneDrive\Estudo\RepositoriosGit\react-redux\Tarefas-app\Back-end\Tarefas_Api\Tarefas_Api\bin\Debug\netcoreapp2.2\Tarefas_Api.deps.json
+C:\Users\vitor.lopes\OneDrive\Estudo\RepositoriosGit\react-redux\Tarefas-app\Back-end\Tarefas_Api\Tarefas_Api\bin\Debug\netcoreapp2.2\Tarefas_Api.runtimeconfig.json
+C:\Users\vitor.lopes\OneDrive\Estudo\RepositoriosGit\react-redux\Tarefas-app\Back-end\Tarefas_Api\Tarefas_Api\bin\Debug\netcoreapp2.2\Tarefas_Api.runtimeconfig.dev.json
+C:\Users\vitor.lopes\OneDrive\Estudo\RepositoriosGit\react-redux\Tarefas-app\Back-end\Tarefas_Api\Tarefas_Api\bin\Debug\netcoreapp2.2\Tarefas_Api.dll
+C:\Users\vitor.lopes\OneDrive\Estudo\RepositoriosGit\react-redux\Tarefas-app\Back-end\Tarefas_Api\Tarefas_Api\obj\Debug\netcoreapp2.2\Tarefas_Api.csprojAssemblyReference.cache
+C:\Users\vitor.lopes\OneDrive\Estudo\RepositoriosGit\react-redux\Tarefas-app\Back-end\Tarefas_Api\Tarefas_Api\obj\Debug\netcoreapp2.2\Tarefas_Api.csproj.CoreCompileInputs.cache
+C:\Users\vitor.lopes\OneDrive\Estudo\RepositoriosGit\react-redux\Tarefas-app\Back-end\Tarefas_Api\Tarefas_Api\obj\Debug\netcoreapp2.2\Tarefas_Api.RazorAssemblyInfo.cache
+C:\Users\vitor.lopes\OneDrive\Estudo\RepositoriosGit\react-redux\Tarefas-app\Back-end\Tarefas_Api\Tarefas_Api\obj\Debug\netcoreapp2.2\Tarefas_Api.RazorAssemblyInfo.cs
+C:\Users\vitor.lopes\OneDrive\Estudo\RepositoriosGit\react-redux\Tarefas-app\Back-end\Tarefas_Api\Tarefas_Api\obj\Debug\netcoreapp2.2\Tarefas_Api.AssemblyInfoInputs.cache
+C:\Users\vitor.lopes\OneDrive\Estudo\RepositoriosGit\react-redux\Tarefas-app\Back-end\Tarefas_Api\Tarefas_Api\obj\Debug\netcoreapp2.2\Tarefas_Api.AssemblyInfo.cs
+C:\Users\vitor.lopes\OneDrive\Estudo\RepositoriosGit\react-redux\Tarefas-app\Back-end\Tarefas_Api\Tarefas_Api\obj\Debug\netcoreapp2.2\Tarefas_Api.RazorTargetAssemblyInfo.cache
+C:\Users\vitor.lopes\OneDrive\Estudo\RepositoriosGit\react-redux\Tarefas-app\Back-end\Tarefas_Api\Tarefas_Api\bin\Debug\netcoreapp2.2\Tarefas_Api.pdb
+C:\Users\vitor.lopes\OneDrive\Estudo\RepositoriosGit\react-redux\Tarefas-app\Back-end\Tarefas_Api\Tarefas_Api\obj\Debug\netcoreapp2.2\Tarefas_Api.dll
+C:\Users\vitor.lopes\OneDrive\Estudo\RepositoriosGit\react-redux\Tarefas-app\Back-end\Tarefas_Api\Tarefas_Api\obj\Debug\netcoreapp2.2\Tarefas_Api.pdb

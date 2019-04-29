@@ -1,0 +1,16 @@
+a{
+    color:#b8b8b8;
+}
+
+
+a:hover{
+    color:#ffffff;
+}
+
+.container-menu{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 30px;
+}
