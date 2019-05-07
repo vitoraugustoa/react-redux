@@ -1,0 +1,56 @@
+[{
+"CycleID": 1,
+"CycleName": "Teste",
+"CycleMonth": 3,
+"CycleYear": 1998,
+"Credits": [{
+	"CreditsID": 2,
+	"CreditsName": "Credits 1",
+	"CreditsValue": 43.65,
+	},
+	{
+	"CreditsID": 4,
+	"CreditsName": "Credits 4",
+	"CreditsValue": 43.65,
+	}],
+"Debts": [{
+	 "DebtsID": 5,
+	 "DebtsName":"Debts 1",
+	 "DebtsValue": 76.09,
+	 "DebtsStatus": "PENDENTE"		
+	},
+	{
+	 "DebtsID": 4,
+	 "DebtsName":"Debts 4",
+	 "DebtsValue": 86.09,
+	 "DebtsStatus": "PAGO"
+	}], 
+},
+{
+"CycleID": 2,
+"CycleName": "Cycle 2",
+"CycleMonth": 6,
+"CycleYear": 2018,
+"Credits": [{
+	"CreditsID": 6,
+	"CreditsName": "Credits 6",
+	"CreditsValue": 12.65,
+	},
+	{
+	"CreditsID": 10,
+	"CreditsName": "Credits 10",
+	"CreditsValue": 10.65,
+	}],
+"Debts": [{
+	 "DebtsID": 65,
+	 "DebtsName":"Debts 67",
+	 "DebtsValue": 6.09,
+	 "DebtsStatus": "PENDENTE"		
+	},
+	{
+	 "DebtsID": 44,
+	 "DebtsName":"Debts 44",
+	 "DebtsValue": 86.09,
+	 "DebtsStatus": "PAGO"
+	}], 
+}]
