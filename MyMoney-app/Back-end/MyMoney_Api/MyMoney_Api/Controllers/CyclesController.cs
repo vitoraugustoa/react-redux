@@ -10,6 +10,7 @@ using MyMoney_Api.Context;
 using MyMoney_Api.Models;
 using MyMoney_Api.ViewModels;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MyMoney_Api.Controllers
 {
@@ -28,17 +29,17 @@ namespace MyMoney_Api.Controllers
         }
 
         // Buscar todos os Cycles com paginação
-        [HttpGet("GetAll/{actualPage}")]
-        public ActionResult<string> GetAll([FromRoute] int actualPage)
+        [HttpGet("GetAll")]
+        public IActionResult GetAll([FromQuery] int actualPage)
         {
             int pageLimit = 5;
 
-            List<BillingCycle> billings = _context.BillingCyles.Include(c => c.Credits).Include(d => d.Debts).AsNoTracking().ToList();
-
-            return JsonConvert.SerializeObject(billings);
+            List<BillingCycle> billings = _context.BillingCyles.Include(c => c.Credits).Include(d => d.Debts).Skip(pageLimit * (actualPage - 1)).Take(pageLimit).AsNoTracking().ToList();
+            //JObject billingsJson = ResultJsonListCycle(billings);
+            string text = JsonConvert.SerializeObject(billings , Formatting.None);
+            var token = JToken.Parse(text);
+            return Ok(token);
         }
-
-        
 
 
         // Buscar a quantiade de Cyclos
@@ -323,6 +324,99 @@ namespace MyMoney_Api.Controllers
         private bool DebtExists(int id)
         {
             return _context.Debts.Any(t => t.DebtID == id);
+        }
+
+        private JObject ResultJsonListCycle(List<BillingCycle> billings)
+        {
+            dynamic jsonObject = new JObject();
+
+            foreach (BillingCycle billing in billings)
+            {
+                var arrayResultBilling = new List<BillingCycle>();
+
+                var auxBilling = new BillingCycle
+                {
+                    CycleID = billing.CycleID ,
+                    Name = billing.Name ,
+                    Month = billing.Month ,
+                    Year = billing.Year
+                };
+
+                // Creating Billing Object
+                jsonObject["Billing"] = JToken.FromObject(auxBilling);
+
+                var arrayResultCredit = new List<Credit>();
+
+                foreach( var credit in billing.Credits)
+                {
+                    var auxCredit = new Credit
+                    {
+                        CreditID = credit.CreditID ,
+                        CycleID = credit.CycleID ,
+                        Name = credit.Name ,
+                        Value = credit.Value
+                    };
+
+                    arrayResultCredit.Add(auxCredit);
+                }
+
+                // Add List of Credit into the JsonObject
+                jsonObject["Credits"] = JToken.FromObject(arrayResultCredit);
+
+                var arrayResultDebt = new List<Debt>();
+
+                foreach (var debt in billing.Debts)
+                {
+                    var auxDebt = new Debt
+                    {
+                        CycleID = debt.CycleID ,
+                        DebtID = debt.DebtID ,
+                        Value = debt.Value ,
+                        Name = debt.Name ,
+                        Status = debt.Status
+                    };
+
+                    arrayResultDebt.Add(auxDebt);
+                }
+
+                // Add List of Debts into the JsonObject
+                jsonObject["Debts"] = JToken.FromObject(arrayResultDebt);
+            }
+
+            return jsonObject;
+        }
+
+        private string ResultJsonCycle(BillingCycle billing)
+        {
+            string json = '"' + nameof(billing) + '"' + ": {";
+            json += '"' + nameof(billing.CycleID) + '"' + ":" + billing.CycleID + ",";
+            json += '"' + nameof(billing.Name) + '"' + ":" + '"' + billing.Name + '"' + ",";
+            json += '"' + nameof(billing.Month) + '"' + ":" + billing.Month + ",";
+            json += '"' + nameof(billing.Year) + '"' + ":" + billing.Year + ",";
+            json += '"' + nameof(billing.Credits) + '"' + ": [";
+            foreach (Credit credit in billing.Credits)
+                {
+                    json += "{";
+                    json += '"' + nameof(credit.CreditID) + '"' + ":" + credit.CreditID + ",";
+                    json += '"' + nameof(credit.Name) + '"' + ":" + '"' + credit.Name + '"' + ",";
+                    json += '"' + nameof(credit.Value) + '"' + ":" + credit.Value + ",";
+                    json += '"' + nameof(credit.CycleID) + '"' + ":" + credit.CycleID;
+                    json += "},";
+                }
+            json += "],";
+            json += '"' + nameof(billing.Debts) + '"' + ": [";
+            foreach (Debt debt in billing.Debts)
+                {
+                    json += "{";
+                    json += '"' + nameof(debt.DebtID) + '"' + ":" + debt.DebtID + ",";
+                    json += '"' + nameof(debt.Name) + '"' + ":" + '"' + debt.Name + '"' + ",";
+                    json += '"' + nameof(debt.Value) + '"' + ":" + debt.Value + ",";
+                    json += '"' + nameof(debt.Status) + '"' + ":" + '"' + debt.Status + '"' + ",";
+                    json += '"' + nameof(debt.CycleID) + '"' + ":" + debt.CycleID;
+                    json += "},";
+                }
+                json += "]}";
+            return json;
         }
     }
 }

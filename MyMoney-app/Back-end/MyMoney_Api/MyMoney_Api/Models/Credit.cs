@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,8 +16,9 @@ namespace MyMoney_Api.Models
         public decimal Value { get; set; }
 
 
-
         public int? CycleID { get; set; }
+
+        [JsonIgnore]
         public virtual BillingCycle Cycle { get; set; }
     }
 }
