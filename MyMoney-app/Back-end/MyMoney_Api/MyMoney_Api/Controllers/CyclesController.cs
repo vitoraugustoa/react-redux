@@ -57,7 +57,8 @@ namespace MyMoney_Api.Controllers
                 return NotFound();
             }
 
-            return Ok(JsonConvert.SerializeObject(countCycles));
+
+            return Ok(countCycles);
         }
 
         // Buscar a soma de todos os creditos e debitos de todos os Cyclos
@@ -74,7 +75,7 @@ namespace MyMoney_Api.Controllers
                 Debts = debts
             };
 
-            return Ok(JsonConvert.SerializeObject(summary));
+            return Ok(summary);
         }
 
         // Buscar um Cyclo por ID
@@ -83,13 +84,24 @@ namespace MyMoney_Api.Controllers
         public async Task<ActionResult<BillingCycle>> GetById([FromRoute] int id)
         {
             BillingCycle cycle = await _context.BillingCyles.FindAsync(id);
-
+            
             if (cycle == null)
             {
                 return NotFound();
             }
 
-            return Ok(JsonConvert.SerializeObject(cycle));
+            var creditQuery =  _context.Credits.Where(c => c.CycleID == id);
+            var debtQuery =  _context.Debts.Where(d => d.CycleID == id);
+
+            List<Credit> credits = await creditQuery.ToListAsync();
+            List<Debt> debts = await debtQuery.ToListAsync();
+
+            cycle.Credits = credits;
+            cycle.Debts = debts;
+
+            string text = JsonConvert.SerializeObject(cycle , Formatting.None);
+            var token = JToken.Parse(text);
+            return Ok(token);
         }
 
 
@@ -105,7 +117,7 @@ namespace MyMoney_Api.Controllers
             await _context.BillingCyles.AddAsync(cycle);
             await _context.SaveChangesAsync();
 
-            return Ok(cycle);
+            return Ok();
         }
         
         // Incluir Credito em Cycle existente.
@@ -125,10 +137,11 @@ namespace MyMoney_Api.Controllers
             }
 
             credit.Cycle = billing;
+            credit.CycleID = billing.CycleID;
 
             await _context.Credits.AddAsync(credit);
             await _context.SaveChangesAsync();
-            return Ok(JsonConvert.SerializeObject(credit));
+            return Ok();
         }
 
         // Incluir Debito em Cycle existente.
@@ -151,7 +164,7 @@ namespace MyMoney_Api.Controllers
 
             await _context.Debts.AddAsync(debt);
             await _context.SaveChangesAsync();
-            return Ok(JsonConvert.SerializeObject(debt));
+            return Ok();
         } 
 
         // Atualizar novo cycle e retornar o mesmo
@@ -186,7 +199,7 @@ namespace MyMoney_Api.Controllers
                 }
             }
 
-            return Ok(JsonConvert.SerializeObject(cycle));
+            return Ok();
         }
 
         // Atualizar Credit
@@ -221,12 +234,12 @@ namespace MyMoney_Api.Controllers
                 }
             }
 
-            return Ok(JsonConvert.SerializeObject(credit));
+            return Ok();
         }
 
         // Atualizar Debt
         [HttpPut("UpdateDebt")]
-        public async Task<ActionResult<Debt>> UpdateDebt([FromBody] BillingCycle debt)
+        public async Task<ActionResult<Debt>> UpdateDebt([FromBody] Debt debt)
         {
             if (!ModelState.IsValid)
             {
@@ -246,7 +259,7 @@ namespace MyMoney_Api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DebtExists(debt.CycleID))
+                if (!DebtExists(debt.DebtID))
                 {
                     return NotFound();
                 }
@@ -256,7 +269,7 @@ namespace MyMoney_Api.Controllers
                 }
             }
 
-            return Ok(JsonConvert.SerializeObject(debt));
+            return Ok();
         }
 
         // Deletar ciclo
@@ -274,7 +287,7 @@ namespace MyMoney_Api.Controllers
             _context.BillingCyles.Remove(cycle);
             await _context.SaveChangesAsync();
 
-            return Ok(JsonConvert.SerializeObject(cycle));
+            return Ok();
         }
 
         // Deletar Credito
@@ -291,7 +304,7 @@ namespace MyMoney_Api.Controllers
             _context.Credits.Remove(credit);
             await _context.SaveChangesAsync();
 
-            return Ok(JsonConvert.SerializeObject(credit));
+            return Ok();
         }
 
         // Deletar Debito
@@ -308,7 +321,7 @@ namespace MyMoney_Api.Controllers
             _context.Debts.Remove(debt);
             await _context.SaveChangesAsync();
 
-            return Ok(JsonConvert.SerializeObject(debt));
+            return Ok();
         }
 
         private bool CycleExists(int id)
@@ -324,99 +337,6 @@ namespace MyMoney_Api.Controllers
         private bool DebtExists(int id)
         {
             return _context.Debts.Any(t => t.DebtID == id);
-        }
-
-        private JObject ResultJsonListCycle(List<BillingCycle> billings)
-        {
-            dynamic jsonObject = new JObject();
-
-            foreach (BillingCycle billing in billings)
-            {
-                var arrayResultBilling = new List<BillingCycle>();
-
-                var auxBilling = new BillingCycle
-                {
-                    CycleID = billing.CycleID ,
-                    Name = billing.Name ,
-                    Month = billing.Month ,
-                    Year = billing.Year
-                };
-
-                // Creating Billing Object
-                jsonObject["Billing"] = JToken.FromObject(auxBilling);
-
-                var arrayResultCredit = new List<Credit>();
-
-                foreach( var credit in billing.Credits)
-                {
-                    var auxCredit = new Credit
-                    {
-                        CreditID = credit.CreditID ,
-                        CycleID = credit.CycleID ,
-                        Name = credit.Name ,
-                        Value = credit.Value
-                    };
-
-                    arrayResultCredit.Add(auxCredit);
-                }
-
-                // Add List of Credit into the JsonObject
-                jsonObject["Credits"] = JToken.FromObject(arrayResultCredit);
-
-                var arrayResultDebt = new List<Debt>();
-
-                foreach (var debt in billing.Debts)
-                {
-                    var auxDebt = new Debt
-                    {
-                        CycleID = debt.CycleID ,
-                        DebtID = debt.DebtID ,
-                        Value = debt.Value ,
-                        Name = debt.Name ,
-                        Status = debt.Status
-                    };
-
-                    arrayResultDebt.Add(auxDebt);
-                }
-
-                // Add List of Debts into the JsonObject
-                jsonObject["Debts"] = JToken.FromObject(arrayResultDebt);
-            }
-
-            return jsonObject;
-        }
-
-        private string ResultJsonCycle(BillingCycle billing)
-        {
-            string json = '"' + nameof(billing) + '"' + ": {";
-            json += '"' + nameof(billing.CycleID) + '"' + ":" + billing.CycleID + ",";
-            json += '"' + nameof(billing.Name) + '"' + ":" + '"' + billing.Name + '"' + ",";
-            json += '"' + nameof(billing.Month) + '"' + ":" + billing.Month + ",";
-            json += '"' + nameof(billing.Year) + '"' + ":" + billing.Year + ",";
-            json += '"' + nameof(billing.Credits) + '"' + ": [";
-            foreach (Credit credit in billing.Credits)
-                {
-                    json += "{";
-                    json += '"' + nameof(credit.CreditID) + '"' + ":" + credit.CreditID + ",";
-                    json += '"' + nameof(credit.Name) + '"' + ":" + '"' + credit.Name + '"' + ",";
-                    json += '"' + nameof(credit.Value) + '"' + ":" + credit.Value + ",";
-                    json += '"' + nameof(credit.CycleID) + '"' + ":" + credit.CycleID;
-                    json += "},";
-                }
-            json += "],";
-            json += '"' + nameof(billing.Debts) + '"' + ": [";
-            foreach (Debt debt in billing.Debts)
-                {
-                    json += "{";
-                    json += '"' + nameof(debt.DebtID) + '"' + ":" + debt.DebtID + ",";
-                    json += '"' + nameof(debt.Name) + '"' + ":" + '"' + debt.Name + '"' + ",";
-                    json += '"' + nameof(debt.Value) + '"' + ":" + debt.Value + ",";
-                    json += '"' + nameof(debt.Status) + '"' + ":" + '"' + debt.Status + '"' + ",";
-                    json += '"' + nameof(debt.CycleID) + '"' + ":" + debt.CycleID;
-                    json += "},";
-                }
-                json += "]}";
-            return json;
         }
     }
 }
