@@ -14,9 +14,8 @@ using Newtonsoft.Json.Linq;
 
 namespace MyMoney_Api.Controllers
 {
-    [Produces("application/json")]
+    [DisableCors]
     [Route("api/[controller]")]
-    [EnableCors("Cycle")]
     [ApiController]
     public class CyclesController : ControllerBase
     {
@@ -30,12 +29,9 @@ namespace MyMoney_Api.Controllers
 
         // Buscar todos os Cycles com paginação
         [HttpGet("GetAll")]
-        public IActionResult GetAll([FromQuery] int actualPage)
+        public IActionResult GetAll([FromQuery] int actualPage,[FromQuery] int pageLimit)
         {
-            int pageLimit = 5;
-
             List<BillingCycle> billings = _context.BillingCyles.Include(c => c.Credits).Include(d => d.Debts).Skip(pageLimit * (actualPage - 1)).Take(pageLimit).AsNoTracking().ToList();
-            //JObject billingsJson = ResultJsonListCycle(billings);
             string text = JsonConvert.SerializeObject(billings , Formatting.None);
             var token = JToken.Parse(text);
             return Ok(token);

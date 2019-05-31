@@ -28,15 +28,15 @@ namespace MyMoney_Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<MyMoneyContext>(options => options.UseMySql(Configuration.GetConnectionString("ConexaoMySql")));
+
             services.AddCors(options =>
             {
-                options.AddPolicy("Cycle" ,
+                options.AddPolicy("cycle",
                     builder => builder.AllowAnyOrigin()
-                                .AllowAnyMethod()
-                                .AllowAnyHeader());
+                                 .AllowAnyMethod()
+                                    .AllowAnyHeader());
             });
-
-            services.AddDbContext<MyMoneyContext>(options => options.UseMySql(Configuration.GetConnectionString("ConexaoMySql")));
 
             services.AddMvc()
                 .AddJsonOptions(o => o.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)
@@ -57,14 +57,10 @@ namespace MyMoney_Api
                 app.UseHsts();
             }
 
-            app.UseCors("Cycle");
+            app.UseCors("cycle");
             app.UseHttpsRedirection();
-            app.UseMvc(routes => {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Teste}/{action=Index}/{id?}"
-                    );
-            });
+            app.UseStaticFiles();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
