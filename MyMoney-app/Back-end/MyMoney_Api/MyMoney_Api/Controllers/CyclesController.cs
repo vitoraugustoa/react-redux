@@ -105,6 +105,12 @@ namespace MyMoney_Api.Controllers
         [HttpPost("CreateCycle")]
         public async Task<ActionResult<BillingCycle>> CreateCycle([FromBody] BillingCycle cycle)
         {
+
+            if(cycle == null || cycle.Name.Equals(null) || cycle.Month == 0 || cycle.Year == 0)
+            {
+                return BadRequest();
+            }
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -120,6 +126,7 @@ namespace MyMoney_Api.Controllers
         [HttpPost("IncludeCredit")]
         public async Task<ActionResult<Credit>> IncludeCredit([FromBody] Credit credit)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

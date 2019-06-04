@@ -1,3 +1,3 @@
-const urlBase = 'https://localhost:5001/api';
+const urlBase = 'https://localhost:5001/api/cycles';
 
 export default urlBase;

@@ -10,7 +10,7 @@ class billingCycleList extends Component {
 
         this.state = {
             actualPage: 1,
-            pageLimit: 10,
+            pageLimit: 20,
         }
 
         this.renderRows = this.renderRows.bind(this);

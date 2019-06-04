@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
     list: [],
+    sucessEvent: '',
 }
 
 export default (state = INITIAL_STATE, action) => {
