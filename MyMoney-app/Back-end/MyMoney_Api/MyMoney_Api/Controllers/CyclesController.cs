@@ -276,7 +276,7 @@ namespace MyMoney_Api.Controllers
         }
 
         // Deletar ciclo
-        [HttpDelete("DeleteCyclo/{id}")]
+        [HttpDelete("DeleteCycle/{id}")]
         public async Task<ActionResult<BillingCycle>> DeleteCyclo([FromRoute] int id)
         {
 
