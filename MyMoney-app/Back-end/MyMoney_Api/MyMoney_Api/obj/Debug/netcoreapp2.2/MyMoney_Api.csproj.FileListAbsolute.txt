@@ -40,3 +40,17 @@ C:\Users\vitor.lopes\Documents\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMo
 C:\Users\vitor.lopes\Documents\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\obj\Debug\netcoreapp2.2\MyMoney_Api.RazorTargetAssemblyInfo.cache
 C:\Users\vitor.lopes\Documents\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\obj\Debug\netcoreapp2.2\MyMoney_Api.dll
 C:\Users\vitor.lopes\Documents\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\obj\Debug\netcoreapp2.2\MyMoney_Api.pdb
+C:\Users\vitor.lopes\OneDrive - BHS\Documentos\Estudo\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\bin\Debug\netcoreapp2.2\MyMoney_Api.deps.json
+C:\Users\vitor.lopes\OneDrive - BHS\Documentos\Estudo\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\bin\Debug\netcoreapp2.2\MyMoney_Api.runtimeconfig.json
+C:\Users\vitor.lopes\OneDrive - BHS\Documentos\Estudo\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\bin\Debug\netcoreapp2.2\MyMoney_Api.runtimeconfig.dev.json
+C:\Users\vitor.lopes\OneDrive - BHS\Documentos\Estudo\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\bin\Debug\netcoreapp2.2\MyMoney_Api.dll
+C:\Users\vitor.lopes\OneDrive - BHS\Documentos\Estudo\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\bin\Debug\netcoreapp2.2\MyMoney_Api.pdb
+C:\Users\vitor.lopes\OneDrive - BHS\Documentos\Estudo\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\obj\Debug\netcoreapp2.2\MyMoney_Api.csprojAssemblyReference.cache
+C:\Users\vitor.lopes\OneDrive - BHS\Documentos\Estudo\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\obj\Debug\netcoreapp2.2\MyMoney_Api.csproj.CoreCompileInputs.cache
+C:\Users\vitor.lopes\OneDrive - BHS\Documentos\Estudo\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\obj\Debug\netcoreapp2.2\MyMoney_Api.RazorAssemblyInfo.cache
+C:\Users\vitor.lopes\OneDrive - BHS\Documentos\Estudo\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\obj\Debug\netcoreapp2.2\MyMoney_Api.RazorAssemblyInfo.cs
+C:\Users\vitor.lopes\OneDrive - BHS\Documentos\Estudo\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\obj\Debug\netcoreapp2.2\MyMoney_Api.AssemblyInfoInputs.cache
+C:\Users\vitor.lopes\OneDrive - BHS\Documentos\Estudo\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\obj\Debug\netcoreapp2.2\MyMoney_Api.AssemblyInfo.cs
+C:\Users\vitor.lopes\OneDrive - BHS\Documentos\Estudo\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\obj\Debug\netcoreapp2.2\MyMoney_Api.RazorTargetAssemblyInfo.cache
+C:\Users\vitor.lopes\OneDrive - BHS\Documentos\Estudo\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\obj\Debug\netcoreapp2.2\MyMoney_Api.dll
+C:\Users\vitor.lopes\OneDrive - BHS\Documentos\Estudo\react-redux\MyMoney-app\Back-end\MyMoney_Api\MyMoney_Api\obj\Debug\netcoreapp2.2\MyMoney_Api.pdb

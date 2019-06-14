@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vitor.lopes\\OneDrive - BHS\\Documentos\\react-redux\\MyMoney-app\\Back-end\\MyMoney_Api\\MyMoney_Api\\MyMoney_Api.csproj": {}
+    "C:\\Users\\vitor.lopes\\OneDrive - BHS\\Documentos\\Estudo\\react-redux\\MyMoney-app\\Back-end\\MyMoney_Api\\MyMoney_Api\\MyMoney_Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vitor.lopes\\OneDrive - BHS\\Documentos\\react-redux\\MyMoney-app\\Back-end\\MyMoney_Api\\MyMoney_Api\\MyMoney_Api.csproj": {
+    "C:\\Users\\vitor.lopes\\OneDrive - BHS\\Documentos\\Estudo\\react-redux\\MyMoney-app\\Back-end\\MyMoney_Api\\MyMoney_Api\\MyMoney_Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vitor.lopes\\OneDrive - BHS\\Documentos\\react-redux\\MyMoney-app\\Back-end\\MyMoney_Api\\MyMoney_Api\\MyMoney_Api.csproj",
+        "projectUniqueName": "C:\\Users\\vitor.lopes\\OneDrive - BHS\\Documentos\\Estudo\\react-redux\\MyMoney-app\\Back-end\\MyMoney_Api\\MyMoney_Api\\MyMoney_Api.csproj",
         "projectName": "MyMoney_Api",
-        "projectPath": "C:\\Users\\vitor.lopes\\OneDrive - BHS\\Documentos\\react-redux\\MyMoney-app\\Back-end\\MyMoney_Api\\MyMoney_Api\\MyMoney_Api.csproj",
+        "projectPath": "C:\\Users\\vitor.lopes\\OneDrive - BHS\\Documentos\\Estudo\\react-redux\\MyMoney-app\\Back-end\\MyMoney_Api\\MyMoney_Api\\MyMoney_Api.csproj",
         "packagesPath": "C:\\Users\\vitor.lopes\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vitor.lopes\\OneDrive - BHS\\Documentos\\react-redux\\MyMoney-app\\Back-end\\MyMoney_Api\\MyMoney_Api\\obj\\",
+        "outputPath": "C:\\Users\\vitor.lopes\\OneDrive - BHS\\Documentos\\Estudo\\react-redux\\MyMoney-app\\Back-end\\MyMoney_Api\\MyMoney_Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -46,6 +46,10 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Razor.Design": {
               "suppressParent": "All",
