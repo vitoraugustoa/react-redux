@@ -15,9 +15,18 @@ namespace MyMoney_Api.Context
         public DbSet<Credit> Credits { get; set; }
         public DbSet<Debt> Debts { get; set; }
         public DbSet<BillingCycle> BillingCyles { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<User>(entity => {
+                entity.ToTable("users");
+                entity.HasKey(u => u.Id).HasName("Id");
+                entity.Property(u => u.Email).HasColumnType("VARCHAR(100)").HasColumnName("User_Email");
+                entity.Property(u => u.Password).HasColumnType("VARCHAR(100)").HasColumnName("User_Password");
+                entity.Property(u => u.Name).HasColumnType("VARCHAR(100)").HasColumnName("Name");
+            });
 
             modelBuilder.Entity<Credit>(entity =>
             {

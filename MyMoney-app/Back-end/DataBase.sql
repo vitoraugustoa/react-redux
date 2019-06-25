@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `mymoney`.`billingcycle` (
   `CycleYear` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`CycleID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 14
+AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -65,6 +65,20 @@ CREATE TABLE IF NOT EXISTS `mymoney`.`debt` (
     REFERENCES `mymoney`.`billingcycle` (`CycleID`)
     ON DELETE CASCADE)
 ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `mymoney`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mymoney`.`users` (
+  `Id` INT(11) NOT NULL AUTO_INCREMENT,
+  `User_Email` VARCHAR(100) NOT NULL,
+  `User_Password` VARCHAR(100) NOT NULL,
+  `Name` VARCHAR(100) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = latin1;
 
 

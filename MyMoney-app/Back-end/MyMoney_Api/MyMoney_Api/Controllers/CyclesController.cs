@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ using Newtonsoft.Json.Linq;
 
 namespace MyMoney_Api.Controllers
 {
+    [Authorize("Bearer")]
     [DisableCors]
     [Route("api/[controller]")]
     [ApiController]

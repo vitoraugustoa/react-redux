@@ -9,7 +9,8 @@ const INITIAL_VALUS = {
     name: '',
     month: '',
     year: '',
-    credits: [{}],    
+    credits: [{}], 
+    debts: [{}]   
 };
 
 export function  getList(pageNumber, pageLimit) {    
