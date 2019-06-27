@@ -15,7 +15,7 @@ using Newtonsoft.Json.Linq;
 
 namespace MyMoney_Api.Controllers
 {
-    [Authorize("Bearer")]
+    [Authorize("Pass")]
     [DisableCors]
     [Route("api/[controller]")]
     [ApiController]

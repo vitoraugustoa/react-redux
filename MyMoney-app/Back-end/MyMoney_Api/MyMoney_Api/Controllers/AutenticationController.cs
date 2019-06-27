@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MyMoney_Api.Controllers
 {
-    [Authorize("Bearer")]
+    [Authorize("Pass")]
     [DisableCors]
     [Route("api/[controller]")]
     [ApiController]
@@ -60,7 +60,12 @@ namespace MyMoney_Api.Controllers
             }
         }
 
-
+        [AllowAnonymous]
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetUsers()
+        {
+            return Ok(await _context.Users.ToListAsync());
+        }
 
         [AllowAnonymous]
         [HttpPost("CreateUser")]
@@ -73,6 +78,7 @@ namespace MyMoney_Api.Controllers
 
             try
             {
+                user.Password = "123";
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
 
@@ -94,8 +100,9 @@ namespace MyMoney_Api.Controllers
             }
         }
 
-        [HttpDelete("DeleteUser")]
-        public async Task<IActionResult> DeleteUser([FromQuery] int id)
+        [AllowAnonymous]
+        [HttpDelete("DeleteUser/{id}")]
+        public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {
             var user = await _context.Users.FindAsync(id);
 
@@ -117,6 +124,7 @@ namespace MyMoney_Api.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPut("UpdateUser")]
         public async Task<ActionResult> UpdateUser([FromBody] User user)
         {
@@ -130,7 +138,7 @@ namespace MyMoney_Api.Controllers
                 _context.Entry(user).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
 
-                return Ok(true);
+                return Ok(user);
             }
             catch(DbUpdateException e)
             {
@@ -152,22 +160,9 @@ namespace MyMoney_Api.Controllers
             JwtHeader jwtHeader = new JwtHeader(signingCredentials);
             JwtPayload jwtPayload = new JwtPayload(claims);
             JwtSecurityToken token = new JwtSecurityToken(jwtHeader, jwtPayload);
+            token.Payload["IdUser"] = Guid.NewGuid();
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
-        private static TokenValidationParameters GetValidationParameters()
-        {
-            return new TokenValidationParameters()
-            {
-                ValidateLifetime = true, // Because there is no expiration in the generated token
-                ValidateAudience = false, // Because there is no audiance in the generated token
-                ValidateIssuer = false,   // Because there is no issuer in the generated token
-                ValidIssuer = "Sample",
-                ValidAudience = "Sample",
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("senhasupersecretaparaauth")) // The same key as the one that generate the token
-            };
-        }
-
     }
 }

@@ -1,0 +1,19 @@
+.wrapper {
+    background-color: #fff !important;
+}
+
+.login-box-body {
+    background-color: #eee !important;
+}
+
+.login-box button {
+    margin-left: 0px;
+}
+
+.login-box a:hover {
+    cursor: pointer;
+}
+
+.d-none {
+    display: none;
+}
